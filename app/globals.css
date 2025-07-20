@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Load Uncut Sans (custom or from Google Fonts if available) */
+@font-face {
+  font-family: "Uncut Sans";
+  src: url("/fonts/Uncut-Sans-Regular.woff2") format("woff2"),
+    url("/fonts/Uncut-Sans-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Uncut Sans";
+  src: url("/fonts/Uncut-Sans-Bold.woff2") format("woff2"),
+    url("/fonts/Uncut-Sans-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  @apply font-sans bg-white text-black;
+}
