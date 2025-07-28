@@ -295,41 +295,6 @@ export default function QASection() {
                   </div>
                 </div>
               </motion.div>
-
-              <motion.div
-                variants={itemVariants}
-                className="bg-orange/5 border border-orange/20 rounded-2xl p-6"
-              >
-                <h4 className="font-bold text-midnight mb-3">
-                  Popular Resources
-                </h4>
-                <div className="space-y-2 text-sm">
-                  <a
-                    href="#"
-                    className="block text-gray-600 hover:text-indigo transition-colors duration-200"
-                  >
-                    → Travel Insurance Guide
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-gray-600 hover:text-indigo transition-colors duration-200"
-                  >
-                    → Packing Checklists
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-gray-600 hover:text-indigo transition-colors duration-200"
-                  >
-                    → Destination Guides
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-gray-600 hover:text-indigo transition-colors duration-200"
-                  >
-                    → Visa Requirements
-                  </a>
-                </div>
-              </motion.div>
             </div>
           </motion.div>
         </div>

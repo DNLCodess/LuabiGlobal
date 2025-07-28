@@ -35,7 +35,7 @@ function ContactHeader() {
             >
               <Globe className="h-8 w-8 text-indigo" />
               <span className="text-xl font-bold text-midnight">
-                Luabi Travels
+                Luabi Global
               </span>
             </motion.div>
           </Link>
@@ -82,7 +82,7 @@ function ContactHero() {
                 <Star key={i} className="h-4 w-4 text-orange fill-current" />
               ))}
               <span className="ml-2 text-sm font-medium">
-                Trusted by 10,000+ travelers
+                Trusted by 150+ travelers
               </span>
             </div>
           </motion.div>
@@ -130,7 +130,7 @@ function ContactForm() {
     email: "",
     phone: "",
     destination: "",
-    budget: "",
+    returnDate: "",
     travelDate: "",
     groupSize: "",
     message: "",
@@ -142,13 +142,42 @@ function ContactForm() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    const {
+      name,
+      email,
+      phone,
+      destination,
+      travelDate,
+      returnDate,
+      groupSize,
+      message,
+    } = formData;
+
+    const text = `
+✈️ New Travel Request:
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Destination: ${destination}
+Travel Date: ${travelDate}
+Return Date: ${returnDate}
+Group Size: ${groupSize}
+Message: ${message}
+  `;
+
+    const whatsappUrl = `https://wa.me/2349153897950?text=${encodeURIComponent(
+      text
+    )}`;
+
+    // Redirect to WhatsApp
+    window.open(whatsappUrl, "_blank");
 
     setIsSubmitting(false);
     setIsSubmitted(true);
 
-    // Reset form after 5 seconds
+    // Clear form after
     setTimeout(() => {
       setIsSubmitted(false);
       setFormData({
@@ -156,8 +185,8 @@ function ContactForm() {
         email: "",
         phone: "",
         destination: "",
-        budget: "",
         travelDate: "",
+        returnDate: "",
         groupSize: "",
         message: "",
       });
@@ -276,31 +305,25 @@ function ContactForm() {
       <div className="grid md:grid-cols-3 gap-6">
         <motion.div whileFocus={{ scale: 1.02 }} className="space-y-2">
           <label className="text-sm font-semibold text-midnight">
-            Budget Range
-          </label>
-          <select
-            name="budget"
-            value={formData.budget}
-            onChange={handleChange}
-            className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo focus:border-indigo transition-all hover:border-indigo/50"
-          >
-            <option value="">Select budget</option>
-            <option value="under-500k">Under ₦500,000</option>
-            <option value="500k-1m">₦500,000 - ₦1,000,000</option>
-            <option value="1m-2m">₦1,000,000 - ₦2,000,000</option>
-            <option value="2m-5m">₦2,000,000 - ₦5,000,000</option>
-            <option value="over-5m">Over ₦5,000,000</option>
-          </select>
-        </motion.div>
-
-        <motion.div whileFocus={{ scale: 1.02 }} className="space-y-2">
-          <label className="text-sm font-semibold text-midnight">
             Travel Date
           </label>
           <input
             type="date"
             name="travelDate"
             value={formData.travelDate}
+            onChange={handleChange}
+            className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo focus:border-indigo transition-all hover:border-indigo/50"
+          />
+        </motion.div>
+
+        <motion.div whileFocus={{ scale: 1.02 }} className="space-y-2">
+          <label className="text-sm font-semibold text-midnight">
+            Return Date
+          </label>
+          <input
+            type="date"
+            name="returnDate"
+            value={formData.returnDate}
             onChange={handleChange}
             className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo focus:border-indigo transition-all hover:border-indigo/50"
           />
@@ -343,6 +366,7 @@ function ContactForm() {
       <motion.button
         type="submit"
         disabled={isSubmitting}
+        onClick={handleSubmit}
         whileHover={{ scale: 1.02, y: -2 }}
         whileTap={{ scale: 0.98 }}
         className="w-full bg-gradient-to-r from-orange to-yellow-500 text-white py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-orange/25 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
@@ -378,7 +402,7 @@ function ContactInfo() {
     {
       icon: Phone,
       title: "Phone",
-      details: ["+234 913-0000-276"],
+      details: ["+234 703-432-0009"],
       description: "Call us for immediate assistance",
       color: "text-green-600",
       bgColor: "bg-green-50",
@@ -386,7 +410,7 @@ function ContactInfo() {
     {
       icon: Mail,
       title: "Email",
-      details: ["luabitravelsandtours@gmail.com", "info@luabitravels.com"],
+      details: ["mayorfromthe60s@gmail.com", "info@luabitravels.com"],
       description: "We respond within 6 hours",
       color: "text-blue-600",
       bgColor: "bg-blue-50",
@@ -394,7 +418,10 @@ function ContactInfo() {
     {
       icon: MapPin,
       title: "Office Location",
-      details: ["74, Mobolaji Bank Anthony Way", "Ikeja, Lagos, Nigeria"],
+      details: [
+        "4th Floor, Mega Plaza",
+        "No 14 Idowu Martins,Victoria Island, Lagos, Nigeria",
+      ],
       description: "Visit us for personalized consultation",
       color: "text-red-600",
       bgColor: "bg-red-50",
@@ -472,7 +499,7 @@ function ContactInfo() {
           </p>
           <div className="bg-white/20 rounded-xl p-4">
             <p className="font-medium">
-              🆘 Emergency Hotline: +234 913-0000-276
+              🆘 Emergency Hotline: +234 703 432 0009
             </p>
           </div>
         </div>
@@ -498,19 +525,22 @@ function ContactMap() {
     >
       <div className="bg-gradient-to-r from-indigo to-midnight text-white p-6 text-center">
         <h3 className="text-2xl font-bold mb-2">Visit Our Office</h3>
-        <p className="opacity-90">Located in the heart of Ikeja, Lagos</p>
+        <p className="opacity-90">
+          Located in the heart of Victoria Island, Lagos
+        </p>
       </div>
 
       <div className="h-96 bg-gray-200 relative">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.3845074084795!2d3.3515541!3d6.6018128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b93a67cfea32f%3A0x5c83c8daf2396ca0!2sAnthony%20Way%2C%20Ikeja%20101233%2C%20Lagos!5e0!3m2!1sen!2sng!4v1637000000000!5m2!1sen!2sng"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1983.495290659312!2d3.4179757!3d6.4280557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf44840cf0dcf%3A0x1c5b2f1e6c52dd5d!2sMega%20Plaza%2C%2014%20Idowu%20Martins%20St%2C%20Victoria%20Island%2C%20Lagos%20106104%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1722080912540!5m2!1sen!2sng"
           width="100%"
           height="100%"
           style={{ border: 0 }}
           allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-        />
+          className="absolute inset-0 w-full h-full"
+        ></iframe>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -523,13 +553,11 @@ function ContactMap() {
               <MapPin className="h-5 w-5 text-indigo" />
             </div>
             <div>
-              <p className="font-bold text-midnight text-lg">
-                Luabi Travels & Tours
-              </p>
+              <p className="font-bold text-midnight text-lg">Luabi Global</p>
               <p className="text-gray-600 text-sm leading-relaxed">
-                74, Mobolaji Bank Anthony Way
+                4th Floor, Mega Plaza, 14 Idowu Martins,
                 <br />
-                Ikeja, Lagos, Nigeria
+                Victoria Island, Lagos, Nigeria
               </p>
               <div className="mt-2 text-xs text-indigo font-medium">
                 📍 Easy access via public transport
@@ -578,7 +606,7 @@ export default function ContactPage() {
           >
             <div className="flex items-center justify-center space-x-3 mb-6">
               <Globe className="h-10 w-10 text-orange" />
-              <span className="text-3xl font-bold">Luabi Travels & Tours</span>
+              <span className="text-3xl font-bold">Luabi Global </span>
             </div>
             <p className="text-lg opacity-90 max-w-2xl mx-auto mb-8">
               Your trusted partner in creating extraordinary travel experiences
@@ -588,7 +616,7 @@ export default function ContactPage() {
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               <div>
                 <h4 className="font-bold mb-3 text-orange">Quick Contact</h4>
-                <p className="text-sm opacity-80">+234 913-0000-276</p>
+                <p className="text-sm opacity-80">+234 703-4320-009</p>
                 <p className="text-sm opacity-80">info@luabitravels.com</p>
               </div>
               <div>
@@ -596,16 +624,22 @@ export default function ContactPage() {
                 <p className="text-sm opacity-80">Mon - Fri: 8AM - 6PM</p>
                 <p className="text-sm opacity-80">Saturday: 9AM - 4PM</p>
               </div>
-              <div>
+              <div className="mb-4">
                 <h4 className="font-bold mb-3 text-orange">Follow Us</h4>
-                <p className="text-sm opacity-80">@luabitravels</p>
-                <p className="text-sm opacity-80">Social media links</p>
+                <a
+                  href="https://www.instagram.com/luabiglobal?igsh=OXZ3NHdncjhqMnNh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-white hover:underline"
+                >
+                  @luabiglobal
+                </a>
               </div>
             </div>
           </motion.div>
 
           <div className="border-t border-white/20 pt-8 opacity-70">
-            <p>&copy; 2025 Luabi Travels & Tours. All rights reserved.</p>
+            <p>&copy; 2025 Luabi Global. All rights reserved.</p>
           </div>
         </div>
       </footer>

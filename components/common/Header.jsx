@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Globe, Menu, X } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,10 +30,15 @@ export default function Header() {
             className="flex items-center space-x-2"
             whileHover={{ scale: 1.05 }}
           >
-            <Globe className="h-8 w-8 text-indigo" />
-            <span className="text-xl font-bold text-midnight">
-              Luabi Travels
-            </span>
+            <div className="relative w-32 h-32">
+              <Image
+                src="/logo.svg" // adjust filename if different
+                alt="Luabi Travels Logo"
+                layout="fill"
+                objectFit="contain"
+                priority
+              />
+            </div>
           </motion.div>
           <nav className="hidden md:flex space-x-8">
             {["Home", "About", "Services", "Destinations", "Contact"].map(

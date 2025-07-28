@@ -9,6 +9,7 @@ import DestinationsSection from "@/components/sections/DestinationsSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import TrustSection from "@/components/sections/TrustSection";
 import QASection from "@/components/sections/TrustSection";
+import MeetTheTeamSection from "@/components/sections/MeetTheTeamSection";
 
 export default function LandingPage() {
   return (
@@ -17,7 +18,7 @@ export default function LandingPage() {
       <HeroSection />
       <AboutSection />
       <ServicesSection />
-
+      <MeetTheTeamSection />
       <TestimonialsSection />
       <QASection />
       <CTASection />

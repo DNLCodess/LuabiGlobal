@@ -32,9 +32,10 @@ export default function AboutSection() {
     },
     {
       icon: Shield,
-      title: "24/7 Support & Crisis Management",
+      title: "Always Available Support & Crisis Management",
       description:
-        "Round-the-clock assistance and emergency support wherever you are in the world",
+        "Uninterrupted assistance and emergency response, no matter where you are in the world",
+
       features: [
         "Emergency hotline",
         "Real-time assistance",
@@ -61,7 +62,7 @@ export default function AboutSection() {
     {
       icon: Users,
       label: "Happy Travelers",
-      value: "10,000+",
+      value: "500+",
       color: "text-orange",
       bgColor: "bg-orange/10",
       description: "Satisfied customers worldwide",
@@ -77,7 +78,7 @@ export default function AboutSection() {
     {
       icon: Award,
       label: "Years of Experience",
-      value: "12+",
+      value: "5+",
       color: "text-midnight",
       bgColor: "bg-midnight/10",
       description: "In the travel industry",
@@ -85,7 +86,7 @@ export default function AboutSection() {
     {
       icon: Star,
       label: "Customer Rating",
-      value: "4.9/5",
+      value: "4.8/5",
       color: "text-orange",
       bgColor: "bg-orange/10",
       description: "Average customer satisfaction",
@@ -171,7 +172,7 @@ export default function AboutSection() {
 
           <motion.div variants={itemVariants} className="max-w-4xl mx-auto">
             <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-              Since 2012, we've provided affordable, premium travel experiences
+              Since 2023, we've provided affordable, premium travel experiences
               to thousands of adventurers worldwide.
             </p>
             <p className="text-lg text-gray-500">

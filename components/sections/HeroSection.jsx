@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   motion,
   useScroll,
@@ -8,6 +8,7 @@ import {
   useSpring,
 } from "framer-motion";
 import { ChevronRight, Play } from "lucide-react";
+import Image from "next/image";
 
 function HeroSection() {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -15,7 +16,6 @@ function HeroSection() {
   const y = useTransform(scrollY, [0, 500], [0, 100]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
-  // Mouse parallax
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const springX = useSpring(mouseX, { stiffness: 100, damping: 20 });
@@ -28,85 +28,33 @@ function HeroSection() {
     mouseY.set((clientY / innerHeight - 0.5) * 15);
   };
 
-  useEffect(() => {
-    const img = new Image();
-    img.onload = () => setImageLoaded(true);
-    img.src =
-      "https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80";
-  }, []);
-
   return (
     <section
       className="relative min-h-screen w-full overflow-hidden"
       onMouseMove={handleMouseMove}
     >
-      {/* ACTUAL Full Screen Background Image - No gradients! */}
+      {/* Background Image */}
       <motion.div
         className="absolute inset-0 w-full h-full"
         initial={{ scale: 1.05 }}
         animate={{ scale: 1 }}
         transition={{ duration: 10, ease: "easeOut" }}
       >
-        <motion.div style={{ y }} className="w-full h-full">
-          <img
+        <motion.div style={{ y }} className="w-full h-full relative">
+          <Image
             src="https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
             alt="Airplane wing view over tropical paradise"
-            className="w-full h-full object-cover"
-            onLoad={() => setImageLoaded(true)}
+            fill
+            style={{ objectFit: "cover" }}
+            onLoadingComplete={() => setImageLoaded(true)}
+            priority
           />
         </motion.div>
 
-        {/* Only a subtle dark overlay for text readability - NO GRADIENTS */}
         <div className="absolute inset-0 bg-black/30" />
       </motion.div>
 
-      {/* Animated Travel Elements */}
-      <motion.div
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 0.7, x: 0 }}
-        transition={{ duration: 3, delay: 1 }}
-        className="absolute top-1/4 left-12 z-10"
-      >
-        <motion.div
-          animate={{
-            x: [0, 50, 120, 200, 280],
-            y: [0, -15, -30, -20, -5],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="text-white/60 text-7xl filter drop-shadow-lg"
-        >
-          ✈️
-        </motion.div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, x: 300 }}
-        animate={{ opacity: 0.5, x: 0 }}
-        transition={{ duration: 4, delay: 2 }}
-        className="absolute top-2/3 right-16 z-10"
-      >
-        <motion.div
-          animate={{
-            x: [0, -40, -90, -150, -220],
-            y: [0, 10, -5, -20, -10],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 3,
-          }}
-          className="text-white/40 text-5xl transform rotate-12 filter drop-shadow-lg"
-        >
-          🛩️
-        </motion.div>
-      </motion.div>
-
-      {/* Main Content Overlay */}
+      {/* Main Content */}
       <div className="relative z-20 flex items-center justify-center min-h-screen px-6">
         <motion.div
           style={{ opacity }}
@@ -124,7 +72,7 @@ function HeroSection() {
             }}
           >
             <motion.h1
-              className="text-6xl md:text-8xl lg:text-9xl font-black mb-8 leading-[0.85] tracking-tight"
+              className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-[0.85] tracking-tight"
               style={{
                 textShadow:
                   "0 8px 32px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)",
@@ -189,7 +137,7 @@ function HeroSection() {
               }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="group relative bg-orange-500 hover:bg-orange-400 text-white px-16 py-6 rounded-full font-bold text-xl shadow-2xl hover:shadow-orange-500/40 transition-all duration-300 overflow-hidden border-2 border-orange-400"
+              className="group relative bg-orange-500 hover:bg-orange-400 text-white px-14 py-4 rounded-full font-bold text-xl shadow-2xl hover:shadow-orange-500/40 transition-all duration-300 overflow-hidden border-2 border-orange-400"
             >
               <motion.div
                 className="absolute inset-0 bg-orange-400"
@@ -215,7 +163,7 @@ function HeroSection() {
               }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="group bg-white/20 hover:bg-white/30 text-white px-16 py-6 rounded-full font-bold text-xl border-2 border-white/40 hover:border-white/60 transition-all duration-300 backdrop-blur-sm"
+              className="group bg-white/20 hover:bg-white/30 text-white px-14 py-4 rounded-full font-bold text-xl border-2 border-white/40 hover:border-white/60 transition-all duration-300 backdrop-blur-sm"
             >
               <span className="flex items-center">
                 <Play className="mr-3 h-7 w-7 group-hover:text-orange-300 transition-colors duration-300" />
