@@ -155,7 +155,7 @@ export default function Footer() {
                 <span>
                   Mega Plaza, 14 Idowu Martins
                   <br />
-                  Victoria Islan, Lagos
+                  Victoria Island, Lagos
                 </span>
               </motion.div>
             </div>
