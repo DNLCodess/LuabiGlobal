@@ -153,7 +153,7 @@ export default function Footer() {
                   style={{ color: "#FFA200" }}
                 />
                 <span>
-                  Mega Plaza, 14 Idowu Martins
+                  4th Floor, Mega Plaza, 14 Idowu Martins
                   <br />
                   Victoria Island, Lagos
                 </span>
