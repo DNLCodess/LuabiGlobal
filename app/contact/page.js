@@ -167,7 +167,7 @@ Group Size: ${groupSize}
 Message: ${message}
   `;
 
-    const whatsappUrl = `https://wa.me/2349153897950?text=${encodeURIComponent(
+    const whatsappUrl = `https://wa.me/2347034320009?text=${encodeURIComponent(
       text
     )}`;
 
